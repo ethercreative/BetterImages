@@ -4,11 +4,11 @@ Plugin Name: Better Images
 Plugin URI: https://github.com/ethercreative/BetterImages/
 Description: Easy manipulation of images through code
 Author: Ether Creative
-Version: 0.1.2
+Version: 0.1.3
 Author URI: http://ethercreative.co.uk/
 */
 
-define( 'BI_VERSION', '0.1.2' );
+define( 'BI_VERSION', '0.1.3' );
 
 require_once( plugin_dir_path( __FILE__ ) . 'class.bi.php' );
 
