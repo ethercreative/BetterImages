@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: BetterImages
-Plugin URI: #
+Plugin Name: Better Images
+Plugin URI: https://github.com/ethercreative/BetterImages/
 Description: Easy manipulation of images through code
 Author: Ether Creative
-Version: 1.0.0
+Version: 0.1.1
 Author URI: http://ethercreative.co.uk/
 */
 
-define( 'BI_VERSION', '0.1.0' );
+define( 'BI_VERSION', '0.1.1' );
 
 require_once( plugin_dir_path( __FILE__ ) . 'class.bi.php' );
 
