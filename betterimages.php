@@ -161,3 +161,8 @@ function bi_tools_page()
 
 
 // Updates
+require_once( plugin_dir_path( __FILE__ ) . 'class.bi_update.php' );
+
+if ( is_admin() ) {
+	new BI_update( __FILE__, 'ethercreative', "BetterImages" );
+}
