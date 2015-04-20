@@ -184,6 +184,6 @@ Pixelate the image
 bi()->go();
 ```
 
-The *last function* you run in the BetterImages function chain. It triggers all the image manipulations and returns the new image URL.
+The **last function** you run in the BetterImages function chain. It triggers all the image manipulations and returns the new image URL.
 
 * ```bool $force_image_re_save``` Re-save the image, even if it already exists (cache breaking)
