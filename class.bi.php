@@ -711,11 +711,11 @@ class bi
 	}
 
 	/**
-	 * Applies a 9-cell convolution matrix where center pixel has the weight arg1 and others weight of 1.0.
-	 * The result is normalized by dividing the sum with arg1 + 8.0 (sum of the matrix).
+	 * Applies a 9-cell convolution matrix where center pixel has the weight $amount and others weight of 1.0.
+	 * The result is normalized by dividing the sum with $amount + 8.0 (sum of the matrix).
 	 * Any float is accepted, large value (in practice: 2048 or more) = no change
 	 *
-	 * @param int $amount The amount of smoothing
+	 * @param float $amount The amount of smoothing
 	 * @return bi
 	 */
 	public function smooth($amount)
