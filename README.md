@@ -4,11 +4,9 @@ A better way of generating images code side, for WordPress.
 ## Usage
 ### Basic Usage
 ```php
-
 $image; // Set to an image array, id, or local url
 
 echo new bi($image)->resize()->width(500)->blur(10)->go();
-
 ```
 
 *You don't have to define the resize method (resize, constrain), or the width or height if you only want to pass the image through some filters*
@@ -87,9 +85,7 @@ Set the brightness of the image
 * Minimum Brightness (darkest): -255
 * No Change: 0
 * Maximum Brightness (lightest): 255
-
-
-* int $level The level of brightness (min: -255, max: 255)
+* ```int $level``` The level of brightness (min: -255, max: 255)
 
 
 #### contrast(int $level)
@@ -102,9 +98,7 @@ Set the contrast level of the image *(Note the direction, it is opposite to brig
 * Minimum Contrast: 100
 * No Change: 0
 * Maximum Contrast: -100
-
-
-* int $level The level of contrast (min: 100, max: -100)
+* ```int $level``` The level of contrast (min: 100, max: -100)
 
 
 #### colorize(int $red, int $green, int $blue, int $alpha)
@@ -117,8 +111,6 @@ Colorizes the image
 * Red, Green, & Blue values range from -255 to 255, where 0 is no change
 * Alpha values range from 0 (opaque) to 127 (transparent)
 * The alpha value effects the strength of the colorize effect, not the image itself
-
-
 * ```int $red``` The red value (min: -255, max: 255)
 * ```int $green``` The green value (min: -255, max: 255)
 * ```int $blue``` The blue value (min: -255, max: 255)
@@ -151,8 +143,6 @@ Blurs the image
 * Defaults to gaussian blur
 * ```gaussian``` is a traditional blur
 * ```selective``` is much smoother
-
-
 * ```int $amount``` The number of times the image is passed through the blur filter
 * ```string $type``` The type of blur (gaussian, selective)
 
@@ -174,9 +164,7 @@ Smooths the image
 
 * Applies a 9-cell convolution matrix where center pixel has the weight $amount and others weight of 1.0.
 * The result is normalized by dividing the sum with $amount + 8.0 (sum of the matrix).
-* Any float is accepted, large value (in practice: 2048 or more) = no change
-
-
+* Any float is accepted, large values (in practice: 2048 or more) = no change
 * ```float $amount``` The amount of smoothing
 
 
