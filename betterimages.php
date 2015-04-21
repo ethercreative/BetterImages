@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Better Images
+Plugin Name: BetterImages
 Plugin URI: https://github.com/ethercreative/BetterImages/
 Description: Easy manipulation of images through code
 Author: Ether Creative
