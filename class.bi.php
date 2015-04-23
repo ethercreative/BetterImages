@@ -39,11 +39,14 @@ class bi
 		$this->error = [
 			'max_width' => 1500,
 			'max_height' => 1500,
-			'too_large' => plugins_url('imgs/too_large.jpg', __FILE__)
+			'too_large' => plugins_url('imgs/too_large.jpg', __FILE__),
+			'no_image' => plugins_url('imgs/no_image.jpg', __FILE__),
+			'unknown_type' => plugins_url('imgs/unknown_type.jpg', __FILE__),
+			'not_found' => plugins_url('imgs/not_found.jpg', __FILE__)
 		];
 
 		// Check image is not empty
-		if (empty($image)) return '';
+		if (empty($image)) { echo $this->error['no_image']; return null; }
 
 		// Image Array, URL, or ID?
 		if (gettype($image) === 'array') {
@@ -57,17 +60,18 @@ class bi
 			if (!$obj) return ''; // If returned obj is false
 			$this->original_url = $obj[0];
 		} else {
-			throw new InvalidArgumentException('WordPress image type not recognized. Please enter a valid image array, url, or ID.');
+			echo $this->error['unknown_type']; return null;
 		}
+
+		// Check image exists
+		$image_headers = @get_headers($this->original_url);
+		if ($image_headers[0] == 'HTTP/1.1 404 Not Found' || !$image_headers) { echo $this->error['not_found']; return null; }
 
 		// Get Filename
 		$this->original_name = $this->_upload_url_to_path();
 
 		// Get Directory
 		$this->original_dir = $this->_upload_url_to_path(true);
-
-		// Check original still exists
-		if (!file_exists($this->original_dir . $this->original_name)) return '';
 
 		return $this;
 
@@ -430,6 +434,7 @@ class bi
 	 */
 	private function _apply_filters()
 	{
+		// Throw error if image is above max width or height
 		if ($this->new_width > $this->error['max_width'] && $this->new_height > $this->error['max_height']) throw new BIException($this->error['too_large']);
 
 		/**
