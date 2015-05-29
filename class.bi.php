@@ -25,6 +25,7 @@ class bi
 
 	private $bi_dir = '/.bi/';
 	private $error = '';
+	private $retError = '';
 
 
 	/**
@@ -46,7 +47,7 @@ class bi
 		];
 
 		// Check image is not empty
-		if (empty($image)) { echo $this->error['no_image']; return null; }
+		if (empty($image)) { $this->retError = $this->error['no_image']; return null; }
 
 		// Image Array, URL, or ID?
 		if (gettype($image) === 'array') {
@@ -60,12 +61,12 @@ class bi
 			if (!$obj) return ''; // If returned obj is false
 			$this->original_url = $obj[0];
 		} else {
-			echo $this->error['unknown_type']; return null;
+			$this->retError = $this->error['unknown_type']; return null;
 		}
 
 		// Check image exists
 		$image_headers = @get_headers($this->original_url);
-		if ($image_headers[0] == 'HTTP/1.1 404 Not Found' || !$image_headers) { echo $this->error['not_found']; return null; }
+		if ($image_headers[0] == 'HTTP/1.1 404 Not Found' || !$image_headers) { $this->retError = $this->error['not_found']; return null; }
 
 		// Get Filename
 		$this->original_name = $this->_upload_url_to_path();
@@ -123,8 +124,8 @@ class bi
 	 */
 	public function go($force_image_re_save = false)
 	{
-
-		if ($this->original_url === '' || $this->original_name === '') return '';
+		if ($this->retError !== '') return $this->retError;
+		if ($this->original_url === '' || $this->original_name === '') return 'BetterImages: An unknown error occurred.';
 
 		// Check if method is valid
 		if (!in_array($this->method, ['constrain', 'resize']))
